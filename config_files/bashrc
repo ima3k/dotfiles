@@ -1,0 +1,21 @@
+#
+# ~/.bashrc
+#
+#FOR VIM COLORSCHEME
+TERM=xterm-256color
+
+#COLORS
+RESET="\[$(tput sgr0)\]"
+PURPLE="\[\033[38;5;61m\]"
+GREEN_DARK="\[\033[38;5;70m\]"
+BLUE="\[\033[38;5;39m\]"
+PINK="\[\033[38;5;134m\]"
+GREEN_LIGHT="\[\033[38;5;77m\]"
+#SET COMMAND PROMPT
+export PS1="$PURPLE\d \@$RESET\n$GREEN_DARK\w$RESET \n$BLUE\h$RESET$PINK@$RESET$GREEN_LIGHT\u$RESET$GREEN_DARK->$RESET"
+
+setxkbmap pl
+setxkbmap -option caps:escape
+#ALIASES
+alias info='info --vi-keys'
+alias manc='cd ~/Programming/manual-c'
