@@ -12,5 +12,4 @@ metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
         #print key, value
 
         # To just print the title
-print(metadata['xesam:title']);
-print(metadata['xesam:artist'][0]);
+print(metadata['xesam:title'] + " - " + metadata['xesam:artist'][0]);
