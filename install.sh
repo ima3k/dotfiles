@@ -1,32 +1,27 @@
 #!/bin/bash
 echo "‣"
-if [ ! -d "$HOME/.vim" ];then
-    echo "Installing vim"
-    exec yaourt vim
+
+if [ ! -d "$HOME/.config/nvim/init.vim" ];then
+    echo "Installing nvim"
+    exec sudo pacman -S neovim
+    echo "Installing python modules"
+    exec sudo pacman -S python2-neovim python-neovim
+    echo "Installing VimPlug"
+    exec curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-if [ ! -e "$HOME/.vim/bundle/Vundle.vim" ];then
-    echo "Installing Vundle plugin for vim"
-    exec git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if [ $? -ne 0 ];then
+  exit 1
 fi
 
-if [ -e "$HOME/.vimrc" ];then
-    echo "Linking vimrc"
-    exec ln -s config_files/vimrc "$HOME/.vimrc"
-    echo "Installing vim plugins"
-    exec vim :PluginInstall
+if [ -e "$HOME/.config/nvim/init.vim" ];then
+    echo "Linking init.vim"
+    exec ln -s config_files/nvim "$HOME/.config/nvim/init.vim"
+    echo "Installing nvim plugins"
+    exec nvim :PlugInstall
 fi
 
-if [ -e "$HOME/.vimrc" ];then
-    echo "Linking vimrc"
-    exec ln -s config_files/vimrc "$HOME/.vimrc"
-    echo "Installing vim plugins"
-    exec vim :PluginInstall
-fi
-
-if [ -e "$HOME/.vimrc" ];then
-    echo "Linking vimrc"
-    exec ln -s config_files/vimrc "$HOME/.vimrc"
-    echo "Installing vim plugins"
-    exec vim :PluginInstall
+if [ -e "$HOME/.bashrc" ];then
+    echo "Linking bashrc"
+    exec ln -s config_files/bashrc "$HOME/.bashrc"
 fi
